@@ -1,0 +1,35 @@
+package com.example.myapplication.mvp.view
+
+import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.R
+import com.example.myapplication.mvp.presenter.ActivityPresenter
+import com.example.myapplication.mvp.contract.ContractInterface.View
+
+
+class MainActivity: AppCompatActivity(), View {
+
+    private var presenter: ActivityPresenter? = null
+    private var counterTextView: TextView? = null
+    private var clickButton: Button? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main_mvp)
+        counterTextView = findViewById(R.id.counter_text)
+        clickButton = findViewById(R.id.click_button)
+
+        presenter = ActivityPresenter(this)
+    }
+
+    override fun initView() {
+        counterTextView?.text = presenter?.getCounter()
+        clickButton?.setOnClickListener { presenter?.incrementValue() }
+    }
+
+    override fun updateViewData() {
+        counterTextView?.text = presenter?.getCounter()
+    }
+}
