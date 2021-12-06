@@ -1,0 +1,23 @@
+package com.example.myapplication.mvp.presenter
+
+import com.example.myapplication.mvp.contract.ContractInterface.View
+import com.example.myapplication.mvp.contract.ContractInterface.Presenter
+import com.example.myapplication.mvp.model.ActivityModel
+
+class ActivityPresenter (_view: View): Presenter {
+
+    private var view: View = _view
+    private var model: ActivityModel = ActivityModel()
+
+    init {
+        view.initView()
+    }
+
+    override fun incrementValue() {
+        model.incrementCounter()
+        view.updateViewData()
+    }
+
+    override fun getCounter() = model.getCounter().toString()
+
+}
