@@ -1,0 +1,14 @@
+package com.example.myapplication.mvp.model
+
+import com.example.myapplication.mvp.contract.ContractInterface.Model
+
+class ActivityModel: Model {
+
+    private var mCounter = 0
+
+    override fun getCounter()= mCounter
+
+    override fun incrementCounter() {
+        mCounter++
+    }
+}
