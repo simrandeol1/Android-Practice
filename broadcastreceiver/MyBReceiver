@@ -1,0 +1,18 @@
+package com.example.myapplication.broadcastreceiver
+
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+
+class MyBReceiver: BroadcastReceiver() {
+    private val TAG: String = "simsim"
+    override fun onReceive(context: Context?, intent: Intent?) {
+        val b: Bundle? = intent?.extras
+        val l: String = b?.get("data") as String
+        Toast.makeText(context, l, Toast.LENGTH_SHORT).show()
+        Log.d(TAG, l)
+    }
+}
